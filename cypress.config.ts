@@ -23,12 +23,17 @@ export default defineConfig({
     reporterOptions: process.env.CI
       ? {
           reportDir: 'cypress/reports',
-          overwrite: true,
-          html: false,
+          overwrite: false,
+          html: true,
           json: true,
+          reportFilename: 'report',
+          quiet: true,
+          charts: true,
+          timestamp: 'mmddyyyy_HHMMss',
         }
       : undefined,
     setupNodeEvents(on, config) {
+      // required for mochawesome to work with Cypress 10+
       return config
     },
   },

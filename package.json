@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "lint": "eslint 'cypress/**/*.{ts,js}' --fix",
-    "format": "prettier --write 'cypress/**/*.{ts,js,json,md}'",
-    "test:ci": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports,overwrite=true,html=false,json=true",
-    "prepare:report": "mochawesome-merge cypress/reports/*.json > cypress/reports/report.json",
-    "report:html": "marge cypress/reports/report.json --reportDir cypress/reports --reportFilename index.html"
+  "cypress:open": "cypress open",
+  "cypress:run": "cypress run",
+  "lint": "eslint 'cypress/**/*.{ts,js}' --fix",
+  "format": "prettier --write 'cypress/**/*.{ts,js,json,md}'",
+  "test:ci": "cypress run --reporter mochawesome -- --reporter-options reportDir=cypress/reports,overwrite=true,html=false,json=true",
+  "prepare:report": "mochawesome-merge cypress/reports/*.json > cypress/reports/report.json",
+  "report:html": "marge cypress/reports/report.json --reportDir cypress/reports --reportFilename index.html",
+  "posttest:ci": "npm run prepare:report && npm run report:html"
   },
   "keywords": [],
   "author": "",

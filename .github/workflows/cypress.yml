@@ -29,17 +29,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress tests with reporter
+      - name: Run Cypress tests with mochawesome reporter
         run: npm run test:ci
 
-      - name: Merge reports
+      - name: Merge mochawesome JSON reports
         run: npm run prepare:report
 
-      - name: Generate HTML report
+      - name: Generate HTML report from merged JSON
         run: npm run report:html
 
-      - name: Upload HTML report artifact
+      - name: Upload mochawesome report artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-html-report
-          path: cypress/reports/index.html
+          name: mochawesome-report
+          path: cypress/reports
