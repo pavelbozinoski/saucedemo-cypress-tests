@@ -19,6 +19,15 @@ export default defineConfig({
     watchForFileChanges: false,
     viewportWidth: 1280,
     viewportHeight: 720,
+    reporter: process.env.CI ? 'mochawesome' : 'spec',
+    reporterOptions: process.env.CI
+      ? {
+          reportDir: 'cypress/reports',
+          overwrite: true,
+          html: false,
+          json: true,
+        }
+      : undefined,
     setupNodeEvents(on, config) {
       return config
     },
