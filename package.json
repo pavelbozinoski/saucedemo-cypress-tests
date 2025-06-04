@@ -1,0 +1,28 @@
+{
+  "name": "saucedemo-cypress-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "lint": "eslint 'cypress/**/*.{ts,js}' --fix",
+    "format": "prettier --write 'cypress/**/*.{ts,js,json,md}'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "@types/node": "^22.15.29",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
+    "cypress": "^14.4.1",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-cypress": "^5.1.0",
+    "eslint-plugin-prettier": "^5.4.1",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  }
+}
