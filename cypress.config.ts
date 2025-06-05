@@ -20,6 +20,8 @@ export default defineConfig({
     watchForFileChanges: false,
     viewportWidth: 1280,
     viewportHeight: 720,
+    screenshotOnRunFailure: false,  
+    video: false,                  
     setupNodeEvents(on, config) {
       return config
     },
