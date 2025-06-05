@@ -9,6 +9,7 @@ export default defineConfig({
       PROBLEM_USER: process.env.CYPRESS_PROBLEM_USER,
       LOCKED_USER: process.env.CYPRESS_LOCKED_USER,
       ERROR_USER: process.env.CYPRESS_ERROR_USER,
+      NON_EXISTING_USER: process.env.CYPRESS_NON_EXISTING_USER,
       PASSWORD: process.env.CYPRESS_PASSWORD,
     },
     retries: {

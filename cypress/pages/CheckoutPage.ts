@@ -9,15 +9,34 @@ export class CheckoutPage {
   private itemPrices = '[data-test="inventory-item-price"]';
   private totalSummary = '[data-test="total-label"]';
   private backHomeButton = '[data-test="back-to-products"]';
+  private errorMessage = '[data-test="error"]';
 
   clickCheckoutButton() {
     cy.get(this.checkoutButton).click();
   }
 
-  enterPersonalInfo(firstName: string, lastName: string, postalCode: string) {
-    cy.get(this.firstNameInput).type(firstName);
-    cy.get(this.lastNameInput).type(lastName);
-    cy.get(this.postalCodeInput).type(postalCode);
+  enterPersonalInfo(
+    firstName?: string,
+    lastName?: string,
+    postalCode?: string,
+  ) {
+    if (firstName === undefined || firstName === "") {
+      cy.get(this.firstNameInput).clear();
+    } else {
+      cy.get(this.firstNameInput).clear().type(firstName);
+    }
+
+    if (lastName === undefined || lastName === "") {
+      cy.get(this.lastNameInput).clear();
+    } else {
+      cy.get(this.lastNameInput).clear().type(lastName);
+    }
+
+    if (postalCode === undefined || postalCode === "") {
+      cy.get(this.postalCodeInput).clear();
+    } else {
+      cy.get(this.postalCodeInput).clear().type(postalCode);
+    }
   }
 
   clickContinue() {
@@ -56,5 +75,26 @@ export class CheckoutPage {
 
   verifyBackHomeButtonIsVisible() {
     cy.get(this.backHomeButton).should("be.visible");
+  }
+
+  verifyFirstNameRequiredErrorMessage() {
+    cy.get(this.errorMessage).should(
+      "contain.text",
+      "Error: First Name is required",
+    );
+  }
+
+  verifyLastNameRequiredErrorMessage() {
+    cy.get(this.errorMessage).should(
+      "contain.text",
+      "Error: Last Name is required",
+    );
+  }
+
+  verifyPostalCodeRequiredErrorMessage() {
+    cy.get(this.errorMessage).should(
+      "contain.text",
+      "Error: Postal Code is required",
+    );
   }
 }

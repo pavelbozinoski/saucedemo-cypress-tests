@@ -4,6 +4,7 @@ export class ProductsPage {
   private cartLink = '[data-test="shopping-cart-link"]';
   private loginForm = "#login_button_container";
   private inventoryContainer = "#inventory_container";
+  private productSort = '[data-test="product-sort-container"]';
 
   getInventoryItems() {
     return cy.get(this.inventoryItems);
@@ -52,5 +53,23 @@ export class ProductsPage {
 
   verifyItemsInCartBadge(expectedCount: number) {
     cy.get(this.cartBadge).should("have.text", expectedCount.toString());
+  }
+
+  sortProductsBy(sortBy: string){
+    cy.get(this.productSort).select(sortBy);
+
+  }
+
+  verifyPricesSortedLowToHigh() {
+    this.getInventoryItems()
+      .find(".inventory_item_price")
+      .then(($prices) => {
+        const prices = [...$prices].map((el) =>
+          parseFloat(el.innerText.replace("$", ""))
+        );
+
+        const sortedPrices = [...prices].sort((a, b) => a - b);
+        expect(prices).to.deep.equal(sortedPrices);
+      });
   }
 }
