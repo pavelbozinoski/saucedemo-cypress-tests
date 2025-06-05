@@ -9,11 +9,10 @@ export class LoginPage {
     cy.visit("/");
   }
 
-  // Public methods
   loginWithUser(username: string, password: string) {
     cy.get(this.usernameInput).clear().type(username);
 
-    cy.get(this.passwordInput).clear().type(password, { log: false }); // hide password in logs
+    cy.get(this.passwordInput).clear().type(password, { log: false }); // hiding password in logs
 
     cy.get(this.loginButton).click();
   }
@@ -33,6 +32,16 @@ export class LoginPage {
       .and(
         "contain.text",
         "Epic sadface: Sorry, this user has been locked out.",
+      );
+  }
+
+  verifyNonExistingUserErrorMessage() {
+    return cy
+      .get(this.errorMessage)
+      .should("be.visible")
+      .and(
+        "contain.text",
+        "Epic sadface: Username and password do not match any user in this service",
       );
   }
 }

@@ -1,5 +1,5 @@
 export class CartPage {
-  private cartItems = ".cart_item";
+  private cartItems = '[data-test="inventory-item"]';
 
   getCartItems() {
     return cy.get(this.cartItems);

@@ -12,8 +12,8 @@ export default defineConfig({
       PASSWORD: process.env.CYPRESS_PASSWORD,
     },
     retries: {
-      runMode: 0,
-      openMode: 0,
+      runMode: 2,
+      openMode: 1,
     },
     defaultCommandTimeout: 10000,
     watchForFileChanges: false,

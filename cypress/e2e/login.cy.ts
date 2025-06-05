@@ -56,7 +56,6 @@ describe("SauceDemo Login Tests", () => {
     });
 
     loginPage.loginWithUser(Cypress.env("ERROR_USER"), Cypress.env("PASSWORD"));
-
     productsPage.addItemsToCart(["Sauce Labs Fleece Jacket"]);
 
     cy.wait(500).then(() => {
@@ -75,5 +74,16 @@ describe("SauceDemo Login Tests", () => {
     // test will fail here
     productsPage.verifyItemsInCartBadge(1);
     cartPage.verifyItemsInCart(["Sauce Labs Fleece Jacket"]);
+  });
+
+  it("Login with non existing user and verify the error message", () => {
+    loginPage.loginWithUser(
+      Cypress.env("NON_EXISTING_USER"),
+      Cypress.env("PASSWORD"),
+    );
+
+    loginPage.verifyNonExistingUserErrorMessage();
+    loginPage.verifyLoginFormExist();
+    loginPage.verifyUrlIncludes("/");
   });
 });

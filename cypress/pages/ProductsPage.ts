@@ -1,7 +1,7 @@
 export class ProductsPage {
-  private inventoryItems = ".inventory_item";
-  private cartBadge = ".shopping_cart_badge";
-  private cartLink = ".shopping_cart_link";
+  private inventoryItems = '[data-test="inventory-item"]';
+  private cartBadge = '[data-test="shopping-cart-badge"]';
+  private cartLink = '[data-test="shopping-cart-link"]';
   private loginForm = "#login_button_container";
   private inventoryContainer = "#inventory_container";
 
