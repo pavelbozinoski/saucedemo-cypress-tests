@@ -19,6 +19,7 @@ export class LoginPage {
 
   verifyUrlIncludes(url: string) {
     cy.url().should("include", url);
+    cy.url().should("include", url);
   }
 
   verifyLoginFormExist() {
